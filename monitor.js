@@ -1,7 +1,7 @@
 // Requires
 var cheerio = require( 'cheerio' ),
     request = require( 'request' ),
-    email = require( 'email' ).Email;
+    nodemailer = require( 'nodemailer' );
 
 // Config
 var config = require( 'config' );
@@ -61,7 +61,34 @@ function GetUrl ( url, callback ) {
 }
 
 function SendEmail ( args ) {
-    var msg = new email({ 
+    // Set email up
+    var smtpTransport = nodemailer.createTransport( "SMTP", {
+        service: "Gmail",
+        auth: {
+            user: config.mail.user,
+            pass: config.mail.pass
+        }
+    });
+
+    var mailOptions = {
+        from: "Apple Refurb Monitor <" + args.from + ">",
+        to: args.to,
+        subject: args.subject,
+        text: args.body
+    };
+
+    // send mail with defined transport object
+    smtpTransport.sendMail( mailOptions, function( error, response ) {
+        if ( error ) {
+            if ( config.debug ) console.log(error);
+        } else {
+            if ( config.debug ) console.log("Message sent: " + response.message);
+        }
+
+        smtpTransport.close();
+    });
+
+    /*var msg = new email({ 
         from: args.from,
         to: args.to,
         subject: args.subject,
@@ -70,7 +97,7 @@ function SendEmail ( args ) {
 
     msg.send( function( err ){
         if ( config.debug ) console.log( 'Unable to send email: ', err );
-    });
+    });*/
 }
 
 // Wait the specified period.  Will call finished upon completion.

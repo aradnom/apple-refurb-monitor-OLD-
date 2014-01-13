@@ -13,6 +13,8 @@ Specifically, it's looking for Retina iPad Minis at the moment.
 This works by searching product titles for keyword.  Set search and email alert info in config
 and run with forever - https://npmjs.org/package/forever
 
+Email alerts are sent with Gmail SMTP specified in config.
+
 ## Sample config
 
 node_modules/config.js:
@@ -27,6 +29,8 @@ node_modules/config.js:
 
 	// Alert email parameters
 	exports.mail = {
+		user: 'aradnom@gmail.com',
+		pass: '$qAz!102938~',
 		from: 'from address',
 		to: 'to address'
 	};
