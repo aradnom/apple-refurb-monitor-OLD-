@@ -1,0 +1,14 @@
+{
+	"name": "apple-refurb-monitor",
+	"description" : "Simple Appe Refurb product monitoring tool",
+	"version": "0.1.0",
+	"dependencies": {
+		"request": "~2.31.0",
+		"cheerio": "~0.13.1",
+		"email": "~0.2.6"
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	}
+}
