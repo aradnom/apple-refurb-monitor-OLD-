@@ -29,8 +29,8 @@ node_modules/config.js:
 
 	// Alert email parameters
 	exports.mail = {
-		user: 'aradnom@gmail.com',
-		pass: '$qAz!102938~',
+		user: 'gmail address',
+		pass: 'gmail password',
 		from: 'from address',
 		to: 'to address'
 	};
